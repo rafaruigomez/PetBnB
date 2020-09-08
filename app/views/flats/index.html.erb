@@ -1,2 +1,12 @@
 <h1>Flats#index</h1>
 <p>Find me in app/views/flats/index.html.erb</p>
+
+<!-- Esto puede funcionar -->
+<h1>Flats</h1>
+<ul>
+  <% @flats.each do |flat| %>
+    <li>
+      <%= flat["name"] %>
+    </li>
+  <% end %>
+</ul>
