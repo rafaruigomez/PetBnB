@@ -1,5 +1,16 @@
 class FlatPolicy < ApplicationPolicy
 
+  def new?
+    true
+  end
+
+  def owned?
+    true
+  end
+  
+  def booked?
+    true
+  end
 
   def create?
     true
@@ -10,6 +21,20 @@ class FlatPolicy < ApplicationPolicy
     # user == current_user
     # record.user == user
     true
+  end
+
+  def edit?
+    # record == @restaurant
+    # user == current_user
+    record.user == user
+    # true
+  end
+
+  def update?
+    # record == @restaurant
+    # user == current_user
+    record.user == user
+    # true
   end
 
   class Scope < Scope
