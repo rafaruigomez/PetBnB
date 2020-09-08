@@ -2,10 +2,10 @@ class Flat < ApplicationRecord
   belongs_to :user
   has_many :reservations
 
-  validate :price, presence: true
-  validate :name, presence: true
-  validate :description, presence: true
-  validate :location, presence: true
-  validate :address, presence: true
+  validates :price, presence: true
+  validates :name, presence: true
+  validates :description, presence: true
+  validates :location, presence: true
+  validates :address, presence: true
 
 end
