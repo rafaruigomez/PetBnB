@@ -7,6 +7,7 @@ class Flat < ApplicationRecord
   validates :description, presence: true
   validates :location, presence: true
   validates :address, presence: true
+  validates :photo, presence: true
 
   has_many_attached :photos
 
