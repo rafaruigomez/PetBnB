@@ -1,1 +1,12 @@
-Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
+# Project: PetBnB
+
+## Instructions
+
+After each git pull origin/master run:
+
+```bash
+    $ bundle install
+    $ yarn install
+    $ rails db:migrate
+    # To populate Users table
+    $ rails db:seed
