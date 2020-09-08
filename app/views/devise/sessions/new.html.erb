@@ -1,6 +1,9 @@
 <div class="container">
+  <br>
   <div class="row justify-content-center">
-    <div class="col-12 col-md-6 col-lg-4 main">
+    <div class="col-10 col-xs-8 col-md-8 col-lg-6 col-xl-5">
+      <%= link_to "Go Back", :back, class: "btn btn-primary" %>
+      <div class="main">
       <h2 class="text-center">Log in</h2>
         <div class="col-12 form-group">
           <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -15,14 +18,18 @@
               <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
             </div>
 
-            <div class="form-actions">
-              <%= f.button :submit, "Log in", class: 'btn btn-primary' %>
+            <div class="d-flex justify-content-between">
+              <div class="form-actions">
+                <%= f.button :submit, "Log in", class: 'btn btn-primary' %>
+              </div>
+              <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-primary" %>
             </div>
           <% end %>
-
-          <%= render "devise/shared/links" %>
+          <br>
+          <a href="/users/password/new">Forgot your password?</a>
 
         </div>
+      </div>
     </div>
   </div>
 </div>
