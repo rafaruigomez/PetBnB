@@ -10,11 +10,14 @@ class FlatsController < ApplicationController
 
   def new
     @flat = Flat.new
-    # @flat = current_user.flats.new
   end
 
   def create
+
     @flat = Flat.new(flat_params)
+     @user = current_user
+     @flat.user = @user
+
     if @flat.save
       redirect_to flat_path(@flat)
     else
@@ -38,7 +41,7 @@ class FlatsController < ApplicationController
   def destroy
     #@flat = Flat.find(params[:id])
     @flat.destroy
-    redirect_to flats_path(@flats_path)
+    # redirect_to flats_path(@flats_path)
   end
 
   private
