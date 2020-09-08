@@ -8,4 +8,6 @@ class Flat < ApplicationRecord
   validates :location, presence: true
   validates :address, presence: true
 
+  has_many_attached :photos
+
 end

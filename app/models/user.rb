@@ -10,6 +10,8 @@ class User < ApplicationRecord
 
   has_many :booked_flats, source: :flat, through: :reservations
 
-  validates :username, uniqueness: true  
-  
+  validates :username, uniqueness: true
+
+  has_one_attached :photo
+
 end
