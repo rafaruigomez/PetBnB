@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
    <div class="container">
-      <img src="https://pngimg.com/uploads/dog/dog_PNG50380.png" alt="" width="50">
-      <a class="navbar-brand" href="#">PetBnB</a>
+      <img src="https://res.cloudinary.com/rafxss/image/upload/v1599564146/logo_ke2eyy.png" alt="" width="40" class="mr-2" style="border-radius: 10px;">
+      <a class="navbar-brand" href="/">Petbnb</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -9,20 +9,16 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Cities
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Madrid</a>
+              <a class="dropdown-item" href="#">Seville</a>
               <a class="dropdown-item" href="#">Barcelona</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Other</a>
+              <a class="dropdown-item" href="#">Madrid</a>
             </div>
           </li>
         </ul>
@@ -30,12 +26,13 @@
           <input class="form-control mr-sm-2" type="search" placeholder="Search a City" aria-label="Search">
           <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
         </form>
-              <li class="nav-item dropdown">
-        <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <li class="nav-item dropdown">
+            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
           <%= link_to "Sign In", "#", class: "dropdown-item" %>
           <%= link_to "Register", "#", class: "dropdown-item" %>
         </div>
+      </li>
       </div>
    </div>
 </nav>
