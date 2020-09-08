@@ -1,8 +1,21 @@
 <h1>Flats#index</h1>
 <p>Find me in app/views/flats/index.html.erb</p>
+<<<<<<< HEAD
+
+<!-- Esto puede funcionar -->
+<h1>Flats</h1>
+<ul>
+  <% @flats.each do |flat| %>
+    <li>
+      <%= flat["name"] %>
+    </li>
+  <% end %>
+</ul>
+=======
 <ul>
   <% @flats.each do |flat| %>
     <li><%= link_to flat.name, flat_path(flat)%></li>
   <% end %>
 </ul>
 
+>>>>>>> 82136966ef0165d291ce2a239560b6b72b8642da
