@@ -1,0 +1,26 @@
+Changelog:
+
+branch: feature/users
+    [DONE] Add columns to Users Table:
+
+    - Add username
+    - Add first_name
+    - Add last_name
+    - Add description
+    - Add avatar_url
+
+    [DONE] Add requirements to Users Table:
+
+    - t.string :username,              null: false, default: ""
+    - t.string :first_name,              null: false, default: ""
+    - t.string :last_name,              null: false, default: ""
+    - t.text :description,              default: ""
+    - t.string :avatar_url,              null: false, default: ""
+    - uniqueness to User Model
+
+    [DONE] Modify Sign up View
+    [DONE] Modify Edit User View
+
+
+
+
