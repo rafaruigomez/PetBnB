@@ -1,12 +1,25 @@
 <div style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),url('https://res.cloudinary.com/rafxss/image/upload/v1599601770/il_1588xN.1672457821_8zt7_vlfqwf.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center;">
   <div class="container text-center text-white shadow-sm">
     <div style="padding: 75px 0px;">
-      <h1 style="align-content: center; text-shadow: 2px 2px 10px #000000;">All the available dog's houses</h1>
+      <% if params[:location]%>
+        <h1 style="align-content: center; text-shadow: 2px 2px 10px #000000;">All the available dog's houses in <%= params[:location].capitalize%></h1>      
+      <% else %>
+        <h1 style="align-content: center; text-shadow: 2px 2px 10px #000000;">All the available dog's houses</h1>
+      <% end %>
       <p class="mb-3" style="text-shadow: 2px 2px 15px #000000;">Plan a different kind of getaway to uncover <br> the hidden gems near you.</p>
 
     </div>
   </div>
 </div>
+
+<br>
+<% if current_user%>
+  <div class="container">
+    <div class="justify-content-center">
+      <%= link_to 'Create a flat', new_flat_path, class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>
 
 <div class="container">
   <br>
