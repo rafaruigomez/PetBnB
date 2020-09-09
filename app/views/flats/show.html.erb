@@ -25,9 +25,10 @@
   <div class="container mt-5">
     <div class="container">
       <h3><strong> <%= @flat.name.capitalize %>
-        <% if current_user%>
+        <% if current_user == @flat.user %>
             <%= image_tag current_user.avatar_url, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <%= link_to 'Edit flat', edit_flat_path(@flat) , class: 'btn btn-primary'%>
+            <%= link_to 'Delete flat', flat_path(@flat), method: :delete, data: { confirm: "Are you sure?" } , class: 'btn btn-danger' %>
           <% end %>
            </strong></h3>
 
