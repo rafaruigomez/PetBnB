@@ -1,12 +1,26 @@
-<h1>Flats#edit</h1>
-<p>Find me in app/views/flats/edit.html.erb</p>
-<%= simple_form_for(@flat) do |f| %>
-    <%= f.input :name %>
-    <%= f.input :description %>
-    <%= f.input :address %>
-    <%= f.input :price %>
-    <%= f.input :location, collection: [['Seville', 'Seville'], ['Madrid', 'Madrid'], ['Barcelona', 'Barcelona']], label_method: :second, value_method: :first %>
-    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-    <%= f.submit %>
-  <% end %>
+<div class="container">
+  <br>
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-12 col-md-10 col-lg-8">
+      <%= link_to "Go Back", :back, class: "btn btn-primary" %>
+      <div class="main shadow">
+
+        <h2 class="text-center">Sign up</h2>
+        <div class="col-12 form-group">
+          <%= simple_form_for(@flat) do |f| %>
+              <%= f.input :name %>
+              <%= f.input :description %>
+              <%= f.input :address %>
+              <%= f.input :price %>
+              <%= f.input :location, collection: [['Seville', 'Seville'], ['Madrid', 'Madrid'], ['Barcelona', 'Barcelona']], label_method: :second, value_method: :first %>
+              <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+              <%= f.button :submit, "Save", class: 'btn btn-primary' %>
+          <% end %>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
