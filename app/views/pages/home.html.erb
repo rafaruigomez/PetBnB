@@ -1,16 +1,21 @@
-<% flash.each do |type, msg| %>
-  <div>
-    <%= msg %>
-  </div>
-<% end %>
+<div class="container">
+  <% flash.each do |type, msg| %>
+    <div class="alert alert-pet alert-dismissible fade show" role="alert">
+      <%= msg %>
+      <button type="button" class="close text-white" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  <% end %>
+</div>
 
 <div style="background-image: url('https://res.cloudinary.com/rafxss/image/upload/v1599566629/landing_oqzaqu.png'); background-repeat: no-repeat; background-size: cover; background-position: right top;">
   <div class="container">
     <div style="padding: 150px 100px 150px;">
       <h1 style="align-content: center;">Welcome to Petbnb</h1>
       <p class="mb-3">Plan a different kind of getaway to uncover <br> the hidden gems near you.</p>
-      <a href="/flats" class="btn my-2 my-sm-0 btn-pet" type="submit">Discover</a>
-      <a href="/flats/new" class="btn my-2 my-sm-0 btn-pet-outline" type="submit">Post a dog's house</a>
+      <a href="/flats" class="btn my-2 my-sm-0 btn-pet">Discover</a>
+      <a href="/flats/new" class="btn my-2 my-sm-0 btn-pet-outline">Post a dog's house</a>
 
     </div>
   </div>

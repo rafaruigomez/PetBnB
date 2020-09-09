@@ -5,8 +5,8 @@
     <%= f.input :description %>
     <%= f.input :address %>
     <%= f.input :price %>
-    <%= f.input :location %>
-    <%= f.input :photo, as: :file %>
+    <%= f.input :location, collection: [['Seville', 'Seville'], ['Madrid', 'Madrid'], ['Barcelona', 'Barcelona']], label_method: :second, value_method: :first %>
+    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
     <%= f.submit %>
   <% end %>
 

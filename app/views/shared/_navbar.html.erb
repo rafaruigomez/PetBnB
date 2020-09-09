@@ -33,6 +33,7 @@
                 <div class="dropdown-menu dropdown-menu-right mt-2" aria-labelledby="navbarDropdown">
                   <%= link_to "My Reservations", "#", class: "dropdown-item" %>
                   <%= link_to "My Flats", owned_flats_path, class: "dropdown-item" %>
+                  <%= link_to "Post a House", "/flats/new", class: "dropdown-item" %>
                   <%= link_to "Edit My Profile", "/users/edit", class: "dropdown-item" %>
                   <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
                 </div>

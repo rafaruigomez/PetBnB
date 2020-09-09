@@ -3,7 +3,7 @@
   <div class="row justify-content-center">
     <div class="col-12 col-sm-12 col-md-10 col-lg-8">
       <%= link_to "Go Back", :back, class: "btn btn-primary" %>
-      <div class="main">
+      <div class="main shadow">
 
         <h2 class="text-center">Sign up</h2>
         <div class="col-12 form-group">
@@ -26,7 +26,7 @@
               <%= f.input :description,
                           required: false,
                           autofocus: true,
-                          input_html: { autocomplete: "description" }%>
+                          input_html: { autocomplete: "description" } %>
               <%= f.input :avatar_url,
                           required: true,
                           autofocus: true,
