@@ -56,6 +56,7 @@ class FlatsController < ApplicationController
     #@flat = Flat.find(params[:id])
     @flat.update(flat_params)
     authorize @flat
+    redirect_to flat_path(@flat)
   end
 
   def destroy

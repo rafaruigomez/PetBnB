@@ -25,7 +25,14 @@
   <div class="container mt-5 d-flex">
 
       <div class="container">
-        <h3><strong> <%= @flat.name.capitalize %>   </strong><%= image_tag current_user.avatar_url, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %></h3>
+
+        <h3>
+          <strong> <%= @flat.name.capitalize %>   </strong>
+          <% if current_user%>
+            <%= image_tag current_user.avatar_url, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <%= link_to 'Edit flat', edit_flat_path(@flat) , class: 'btn btn-primary'%>
+          <% end %>
+        </h3>
         <div class="product-box">
           <h5>Flat Description:  <i class="fas fa-home"></i></h5>
           <p><%= @flat.description %></p>
