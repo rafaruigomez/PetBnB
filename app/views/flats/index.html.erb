@@ -2,7 +2,7 @@
   <div class="container text-center text-white shadow-sm">
     <div style="padding: 75px 0px;">
       <% if params[:location]%>
-        <h1 style="align-content: center; text-shadow: 2px 2px 10px #000000;">All the available dog's houses in <%= params[:location].capitalize%></h1>      
+        <h1 style="align-content: center; text-shadow: 2px 2px 10px #000000;">All the available dog's houses in <%= params[:location].capitalize%></h1>
       <% else %>
         <h1 style="align-content: center; text-shadow: 2px 2px 10px #000000;">All the available dog's houses</h1>
       <% end %>
@@ -13,17 +13,18 @@
 </div>
 
 <br>
-<% if current_user%>
-  <div class="container">
-    <div class="justify-content-center">
-      <%= link_to 'Create a flat', new_flat_path, class: 'btn btn-primary' %>
-    </div>
-  </div>
-<% end %>
 
 <div class="container">
-  <br>
   <div class="justify-content-center">
+    <% if current_user%>
+    <div class="mb-3 mr-auto ml-auto" style="max-width: 600px;">
+      <div>
+        <div class="justify-content-center">
+          <%= link_to 'Create a flat', new_flat_path, class: 'btn btn-pet-outline' %>
+        </div>
+      </div>
+    </div>
+    <% end %>
     <% @flats.each do |flat| %>
     <div class="card mb-3 mr-auto ml-auto" style="max-width: 600px; border-radius: 15px;">
       <%= link_to flat_path(flat), class: "text-decoration-none color-link-none" do %>
