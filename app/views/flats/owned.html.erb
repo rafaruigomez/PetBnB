@@ -1,16 +1,48 @@
-<h1>Flats#Owned</h1>
-<p>Find me in app/views/flats/index.html.erb</p>
+<div style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),url('https://res.cloudinary.com/rafxss/image/upload/v1599601770/il_1588xN.1672457821_8zt7_vlfqwf.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center;">
+  <div class="container text-center text-white shadow-sm">
+    <div style="padding: 75px 0px;">
+      <h1 style="align-content: center; text-shadow: 2px 2px 10px #000000;">My flats</h1>
 
-<% if @owned_flats.length > 0 %>
-<p>Eres dueno de flats</p>
-<% else %>
-<p>no eres dueno de flats</p>
+    </div>
+  </div>
+</div>
+
+
+<br>
+<% if current_user%>
+  <div class="container">
+    <div class="justify-content-center">
+      <%= link_to 'Create a flat', new_flat_path, class: 'btn btn-primary' %>
+    </div>
+  </div>
 <% end %>
 
-<% @owned_flats.each do |flat| %>
-  <h1><%=flat.name%></h1>
-  <p><%=flat.description%></p>
-  <p><%=flat.price%></p>
-  <p><%=flat.location%></p>
-  <%= link_to flat.name, flat_path(flat)%>
-<% end %>
+<div class="container">
+
+  <br>
+  <% if @owned_flats.empty? %>
+    <h1 style="align-content: center;">You dont own flats</h1>
+  <% else %>
+    <div class="justify-content-center">
+      <% @owned_flats.each do |flat| %>
+        <%= link_to flat_path(flat) do %>
+        <div class="card mb-3 mr-auto ml-auto" style="max-width: 600px; border-radius: 15px;">
+          <div class="row no-gutters">
+            <div class="col-4 col-md-4">
+              <img src="<%= cl_image_path flat.photos.first.key, height: 500, width: 500, crop: :fill, class: "d-block" %>" class="card-img" alt="..." style="border-top-left-radius: 15px; border-bottom-left-radius: 15px; border-top-right-radius: 0px; border-bottom-right-radius: 0px;">
+            </div>
+            <div class="col-8 col-md-8">
+              <div class="card-body">
+                <h5 class="card-title"><%= flat.name %></h5>
+                <p class="card-text"><%= flat.description %></p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+
+</div>

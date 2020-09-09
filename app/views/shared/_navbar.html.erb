@@ -16,9 +16,9 @@
               Cities
             </a>
             <div class="dropdown-menu mt-2" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Seville</a>
-              <a class="dropdown-item" href="#">Barcelona</a>
-              <a class="dropdown-item" href="#">Madrid</a>
+              <a class="dropdown-item" href="/flats?location=seville">Seville</a>
+              <a class="dropdown-item" href="/flats?location=barcelona">Barcelona</a>
+              <a class="dropdown-item" href="/flats?location=madrid">Madrid</a>
             </div>
           </li>
         </ul>
@@ -32,7 +32,7 @@
                 <%= image_tag current_user.avatar_url, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
                 <div class="dropdown-menu dropdown-menu-right mt-2" aria-labelledby="navbarDropdown">
                   <%= link_to "My Reservations", "#", class: "dropdown-item" %>
-                  <%= link_to "My Bookings", "#", class: "dropdown-item" %>
+                  <%= link_to "My Flats", owned_flats_path, class: "dropdown-item" %>
                   <%= link_to "Edit My Profile", "/users/edit", class: "dropdown-item" %>
                   <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
                 </div>
