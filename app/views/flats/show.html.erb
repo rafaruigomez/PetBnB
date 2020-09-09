@@ -28,7 +28,7 @@
         <% if current_user == @flat.user %>
             <%= image_tag current_user.avatar_url, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <%= link_to 'Edit flat', edit_flat_path(@flat) , class: 'btn btn-primary'%>
-            <%= link_to 'Delete flat', flat_path(@flat), method: :delete, data: { confirm: "Are you sure?" } , class: 'btn btn-danger' %>
+            <%= link_to 'Delete flat', flat_path(@flat), method: :delete, data: { confirm: "Are you sure?" } , class: 'btn btn-delete-flat' %>
           <% end %>
            </strong></h3>
 
