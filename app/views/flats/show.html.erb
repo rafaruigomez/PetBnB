@@ -22,44 +22,48 @@
       </a>
   </div>
 
-  <div class="container mt-5 d-flex">
-
-      <div class="container">
-        <h3><strong> <%= @flat.name.capitalize %>   </strong><%= image_tag current_user.avatar_url, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %></h3>
-        <div class="product-box">
-          <h5>Flat Description:  <i class="fas fa-home"></i></h5>
-          <p><%= @flat.description %></p>
-        </div>
-        <div class="product-box">
-          <h5>Flat Addres:  <i class="fas fa-map-marked-alt"></i></h5>
-            <p><%= @flat.address%>, <br> <%= @flat.location %> </p>
-          <!-- <p><%= @flat.price %>$ per night.</p> -->
-        </div>
-      </div>
-
-
-      <div class="container">
-        <div class="container dates product-box">
-          <div class="form-group row">
-            <label for="example-datetime-local-input" class="col-2 col-form-label">Start date</label>
-            <div class="col-10">
-              <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">
+  <div class="container mt-5">
+    <div class="container">
+      <h3><strong> <%= @flat.name.capitalize %>   </strong><%= image_tag current_user.avatar_url, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %></h3>
+        <div class="container d-flex">
+          <div class="container">
+            <div class="product-box">
+              <h5>Flat Description:  <i class="fas fa-home"></i></h5>
+              <p><%= @flat.description %></p>
+            </div>
+            <div class="product-box">
+              <h5>Flat Addres:  <i class="fas fa-map-marked-alt"></i></h5>
+                <p><%= @flat.address%>, <br> <%= @flat.location %> </p>
+              <!-- <p><%= @flat.price %>$ per night.</p> -->
             </div>
           </div>
-          <div class="form-group row">
-            <label for="example-datetime-local-input" class="col-2 col-form-label">End date</label>
-            <div class="col-10">
-              <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">
+
+
+          <div class="container book-form">
+            <div class="container dates product-box">
+              <div class="form-group row">
+                <label for="example-datetime-local-input" class="col-2 col-form-label">Start date</label>
+                <div class="col-10">
+                  <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="example-datetime-local-input" class="col-2 col-form-label">End date</label>
+                <div class="col-10">
+                  <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">
+                  <p><%=@flat.price %>$ per night.</p>
+                </div>
+
+              </div>
+              <div class="text-right">
+                <div>
+                  <a id="book" class="btn btn-pet " type="submit">Book</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="product-box">
-          <p><%= @flat.price %>$ per night.</p>
-        </div>
-
-
       </div>
-
   </div>
 </div>
 
