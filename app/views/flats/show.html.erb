@@ -24,7 +24,13 @@
 
   <div class="container mt-5">
     <div class="container">
-      <h3><strong> <%= @flat.name.capitalize %>   </strong><%= image_tag current_user.avatar_url, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %></h3>
+      <h3><strong> <%= @flat.name.capitalize %>
+        <% if current_user%>
+            <%= image_tag current_user.avatar_url, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <%= link_to 'Edit flat', edit_flat_path(@flat) , class: 'btn btn-primary'%>
+          <% end %>
+           </strong></h3>
+
         <div class="container d-flex">
           <div class="container">
             <div class="product-box">
@@ -38,28 +44,7 @@
             </div>
           </div>
 
-<<<<<<< HEAD
-=======
-      <div class="container">
 
-        <h3>
-          <strong> <%= @flat.name.capitalize %>   </strong>
-          <% if current_user%>
-            <%= image_tag current_user.avatar_url, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-            <%= link_to 'Edit flat', edit_flat_path(@flat) , class: 'btn btn-primary'%>
-          <% end %>
-        </h3>
-        <div class="product-box">
-          <h5>Flat Description:  <i class="fas fa-home"></i></h5>
-          <p><%= @flat.description %></p>
-        </div>
-        <div class="product-box">
-          <h5>Flat Addres:  <i class="fas fa-map-marked-alt"></i></h5>
-            <p><%= @flat.address%>, <br> <%= @flat.location %> </p>
-          <!-- <p><%= @flat.price %>$ per night.</p> -->
-        </div>
-      </div>
->>>>>>> bff7d0166349a7ecad0584dce2c0c06ef885285b
 
           <div class="container book-form">
             <div class="container dates product-box">
