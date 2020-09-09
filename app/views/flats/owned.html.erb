@@ -1,0 +1,16 @@
+<h1>Flats#Owned</h1>
+<p>Find me in app/views/flats/index.html.erb</p>
+
+<% if @owned_flats.length > 0 %>
+<p>Eres dueno de flats</p>
+<% else %>
+<p>no eres dueno de flats</p>
+<% end %>
+
+<% @owned_flats.each do |flat| %>
+  <h1><%=flat.name%></h1>
+  <p><%=flat.description%></p>
+  <p><%=flat.price%></p>
+  <p><%=flat.location%></p>
+  <%= link_to flat.name, flat_path(flat)%>
+<% end %>
