@@ -1,12 +1,10 @@
-
+<div class="show">
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style='height:200;'>
     <ol class="carousel-indicators">
       <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
       <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
       <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
     </ol>
-
-
       <div class="carousel-inner" >
         <% @flat.photos.each_with_index do |flat, index| %>
           <div class="carousel-item <%= 'active' if index == 0 %>">
@@ -22,25 +20,48 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
       </a>
-    </div>
+  </div>
 
-    <div class="container mt-5 d-flex">
-      <div>
-        <h1><strong> <%= @flat.name.upcase %> </strong></h1>
-        <h5>Flat Description:</h5>
-          <p><%= @flat.description %></p>
-        <h5>Flat Addres:</h5>
-          <p><%= @flat.address%> city:<%= @flat.location %> </p>
-        <p><%= @flat.price %>$$</p>
-      </div>
+  <div class="container mt-5 d-flex">
+
       <div class="container">
+        <h3><strong> <%= @flat.name.capitalize %>   </strong><%= image_tag current_user.avatar_url, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %></h3>
+        <div class="product-box">
+          <h5>Flat Description:  <i class="fas fa-home"></i></h5>
+          <p><%= @flat.description %></p>
+        </div>
+        <div class="product-box">
+          <h5>Flat Addres:  <i class="fas fa-map-marked-alt"></i></h5>
+            <p><%= @flat.address%>, <br> <%= @flat.location %> </p>
+          <!-- <p><%= @flat.price %>$ per night.</p> -->
+        </div>
+      </div>
 
+
+      <div class="container">
+        <div class="container dates product-box">
+          <div class="form-group row">
+            <label for="example-datetime-local-input" class="col-2 col-form-label">Start date</label>
+            <div class="col-10">
+              <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="example-datetime-local-input" class="col-2 col-form-label">End date</label>
+            <div class="col-10">
+              <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">
+            </div>
+          </div>
+        </div>
+        <div class="product-box">
+          <p><%= @flat.price %>$ per night.</p>
+        </div>
 
 
       </div>
 
-    </div>
-
+  </div>
+</div>
 
 
 
