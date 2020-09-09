@@ -3,6 +3,8 @@ class FlatsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   def index
     # @flats = Flat.all
+    return @flats = policy_scope(Flat).where(location: params[:location].capitalize) if params[:location]
+
     @flats = policy_scope(Flat)
   end
 
