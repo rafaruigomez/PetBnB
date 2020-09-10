@@ -6,6 +6,12 @@ class FlatsController < ApplicationController
     return @flats = policy_scope(Flat).where(location: params[:location].capitalize) if params[:location]
 
     @flats = policy_scope(Flat)
+    @markers = @flats.geocoded.map do |flat|
+      {
+        lat: flat.latitude,
+        lng: flat.longitude
+      }
+    end
   end
 
   def owned
