@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get 'flats/booked', to: 'flats#booked', as: :booked_flats
   devise_for :users
   resources :flats
+  resources :reservations
+
   root to: 'pages#home'
   # resources :flats
 
