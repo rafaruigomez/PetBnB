@@ -7,6 +7,7 @@ class ReservationsController < ApplicationController
 
   def show
      @reservation = Reservation.find_by(id: params[:id])
+     authorize @reservation
   end
 
   def create
@@ -17,7 +18,9 @@ class ReservationsController < ApplicationController
     else
       render :new
     end
+    authorize @reservation
   end
+
 
   def edit
   end
