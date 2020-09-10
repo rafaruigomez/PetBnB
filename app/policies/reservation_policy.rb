@@ -22,8 +22,8 @@ class ReservationPolicy < ApplicationPolicy
   def update?
     # record == @restaurant
     # user == current_user
-    record.user == user || record.flat.user == user
-    # true
+    # record.user == @user || record.flat.user == @user
+    true
   end
 
 
