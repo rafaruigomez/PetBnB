@@ -1,10 +1,10 @@
 <div class="show">
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style='height:200;'>
-    <ol class="carousel-indicators">
+<!--     <ol class="carousel-indicators">
       <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
       <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
       <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-    </ol>
+    </ol> -->
       <div class="carousel-inner" >
         <% @flat.photos.each_with_index do |flat, index| %>
           <div class="carousel-item <%= 'active' if index == 0 %>">
@@ -24,23 +24,26 @@
 
   <div class="container mt-5">
     <div class="container">
-      <h3><strong> <%= @flat.name.capitalize %>
+
+      <div class="container d-flex align-items-center">
+        <div><h3 class="m-0"><strong> <%= @flat.name.capitalize %> </strong></h3></div>
         <% if current_user == @flat.user %>
-            <%= image_tag current_user.avatar_url, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-            <%= link_to 'Edit flat', edit_flat_path(@flat) , class: 'btn btn-primary'%>
-            <%= link_to 'Delete flat', flat_path(@flat), method: :delete, data: { confirm: "Are you sure?" } , class: 'btn btn-delete-flat' %>
-          <% end %>
-           </strong></h3>
+            <%#= image_tag current_user.avatar_url, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <div> <a class="btn btn-sm btn-pet-outline ml-3" href="/flats/<%= @flat.id %>/edit">Edit<i class="fas fa-edit ml-2"></i></a></div>
+            <div> <%= link_to 'Delete flat', flat_path(@flat), method: :delete, data: { confirm: "Are you sure?" } , class: 'btn btn-delete-flat' %> </div>
+        <% end %>
+    </div>
+  </div>
 
         <div class="container d-flex">
           <div class="container">
-            <div class="product-box">
-              <h5>Flat Description:  <i class="fas fa-home"></i></h5>
+            <div class="product-box shadow">
+              <h5 class="mb-3"><i class="fas fa-home mr-1 color-pet"></i> Flat Description:</h5>
               <p><%= @flat.description %></p>
             </div>
-            <div class="product-box">
-              <h5>Flat Addres:  <i class="fas fa-map-marked-alt"></i></h5>
-                <p><%= @flat.address%>, <br> <%= @flat.location %> </p>
+            <div class="product-box shadow mb-5">
+              <h5 class="mb-3"><i class="fas fa-map-marked-alt mr-1 color-pet"></i> Flat Address:</h5>
+                <p><%= @flat.address%>, <strong> <%= @flat.location %> </strong></p>
               <!-- <p><%= @flat.price %>$ per night.</p> -->
             </div>
           </div>
@@ -48,32 +51,32 @@
 
 
           <div class="container book-form">
-            <div class="container dates product-box">
+            <div class="container dates product-box shadow">
+              <h5><i class="far fa-calendar-alt mr-1 color-pet mb-3"></i> Select a date:</h5>
               <div class="form-group row">
-                <label for="example-datetime-local-input" class="col-2 col-form-label">Start date</label>
-                <div class="col-10">
+                <label for="example-datetime-local-input" class="col-3 col-form-label">Start date</label>
+                <div class="col-9">
                   <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">
                 </div>
               </div>
               <div class="form-group row">
-                <label for="example-datetime-local-input" class="col-2 col-form-label">End date</label>
-                <div class="col-10">
+                <label for="example-datetime-local-input" class="col-3 col-form-label">End date</label>
+                <div class="col-9">
                   <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">
-                  <p><%=@flat.price %>$ per night.</p>
                 </div>
 
               </div>
-              <div class="text-right">
-                <div>
-                  <a id="book" class="btn btn-pet " type="submit">Book</a>
-                </div>
+              <div class="d-flex justify-content-between">
+                <div><p style="opacity: 1;"><strong><%=@flat.price %> €</strong> / day</p></div>
+                <div><a id="book" class="btn btn-pet px-4" type="submit">Book</a></div>
               </div>
             </div>
           </div>
         </div>
       </div>
-  </div>
 </div>
+
+
 
 
 
