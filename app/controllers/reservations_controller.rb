@@ -23,9 +23,13 @@ class ReservationsController < ApplicationController
 
 
   def edit
+    authorize @reservation
   end
 
   def update
+    @reservation.update(reservation_params)
+    authorize @reservation
+    redirect_to reservation_path(@reservation)
   end
 
   def destroy
