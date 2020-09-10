@@ -1,90 +1,118 @@
 <div class="show">
-  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style='height:200;'>
-<!--     <ol class="carousel-indicators">
-      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-    </ol> -->
-      <div class="carousel-inner" >
-        <% @flat.photos.each_with_index do |flat, index| %>
-          <div class="carousel-item <%= 'active' if index == 0 %>">
-            <img class="d-block w-100" src="<%= cl_image_path flat.key, height: 400, width: 1200, crop: :fill, class: "d-block" %>" alt="First slide">
-          </div>
-        <% end %>
-      </div>
-      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-  </div>
-
-  <div class="container mt-5">
-    <div class="container">
-
-      <div class="container d-flex align-items-center">
-        <div><h3 class="m-0"><strong> <%= @flat.name.capitalize %> </strong></h3></div>
-        <% if current_user == @flat.user %>
-            <%#= image_tag current_user.avatar_url, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-            <div> <a class="btn btn-sm btn-pet-outline ml-3" href="/flats/<%= @flat.id %>/edit">Edit<i class="fas fa-edit ml-2"></i></a></div>
-            <div> <%= link_to 'Delete flat', flat_path(@flat), method: :delete, data: { confirm: "Are you sure?" } , class: 'btn btn-delete-flat' %> </div>
-        <% end %>
+  <div class="container">
+    <div class="d-flex align-items-center mt-4">
+      <div><h3 class="m-0"><strong> <%= @flat.name.capitalize %> </strong></h3></div>
+      <% if current_user == @flat.user %>
+          <div><a class="btn btn-sm btn-pet-outline ml-3" href="/flats/<%= @flat.id %>/edit">Edit<i class="fas fa-edit ml-2"></i></a></div>
+          <div><a data-confirm="Are you sure?" class="btn btn-sm btn-pet-outline ml-2" rel="nofollow" data-method="delete" href="/flats/<%= @flat.id %>">Delete<i class="fas fa-trash-alt ml-2"></i></a></div>
+      <% end %>
+    </div>
+    <div class="text-muted mt-2"><i class="fas fa-map-marker-alt fa-lg mr-1" style="color:#FF5A5F"></i><span> <%= @flat.location.capitalize %> </span></div>
+    <br>
+    <div id="carouselExampleIndicators" class="carousel slide mt-2" data-ride="carousel" style='height:200;'>
+        <div class="carousel-inner" style="border-radius: 15px;" >
+          <% @flat.photos.each_with_index do |flat, index| %>
+            <div class="carousel-item <%= 'active' if index == 0 %>">
+              <img class="d-block w-100" src="<%= cl_image_path flat.key, aspect_ratio: 3.2, quality: 100, crop: :fill, gravity: :center, class: "d-block" %>" alt="First slide">
+            </div>
+          <% end %>
+        </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
     </div>
   </div>
+  <br>
+  <div class="container">
 
-        <div class="container d-flex">
-          <div class="container">
-            <div class="product-box shadow">
-              <h5 class="mb-3"><i class="fas fa-home mr-1 color-pet"></i> Flat Description:</h5>
-              <p><%= @flat.description %></p>
-            </div>
-            <div class="product-box shadow mb-5">
-              <h5 class="mb-3"><i class="fas fa-map-marked-alt mr-1 color-pet"></i> Flat Address:</h5>
-                <p><%= @flat.address%>, <strong> <%= @flat.location %> </strong></p>
-              <!-- <p><%= @flat.price %>$ per night.</p> -->
+    <div class="d-flex">
+      <div class="row justify-content-between">
+      <div class="col-xs-12 col-lg-8">
+        <div class="product-box shadow">
+          <h5 class="mb-3"><i class="fas fa-home mr-1 color-pet"></i> Flat Description:</h5>
+          <p><%= @flat.description %></p>
+        </div>
+        <div class="product-box shadow">
+          <h5 class="mb-3"><i class="fas fa-map-marked-alt mr-1 color-pet"></i> Flat Address:</h5>
+            <p><%= @flat.address%>, <strong> <%= @flat.location %> </strong></p>
+        </div>
+      </div>
+      <div class="book-form col-xs-12 col-lg-4">
+        <div class="dates product-box shadow">
+          <h5><i class="far fa-calendar-alt mr-1 color-pet mb-3"></i> Select a date:</h5>
+          <div class="form-group row">
+            <label for="example-datetime-local-input" class="col-3 col-form-label">Start date</label>
+            <div class="col-9">
+              <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">
             </div>
           </div>
-
-
-
-          <div class="container book-form">
-            <div class="container dates product-box shadow">
-              <h5><i class="far fa-calendar-alt mr-1 color-pet mb-3"></i> Select a date:</h5>
-              <div class="form-group row">
-                <label for="example-datetime-local-input" class="col-3 col-form-label">Start date</label>
-                <div class="col-9">
-                  <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">
-                </div>
+            <div class="form-group row">
+              <label for="example-datetime-local-input" class="col-3 col-form-label">End date</label>
+              <div class="col-9">
+                <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">
               </div>
-              <div class="form-group row">
-                <label for="example-datetime-local-input" class="col-3 col-form-label">End date</label>
-                <div class="col-9">
-                  <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">
-                </div>
-
-              </div>
-              <div class="d-flex justify-content-between">
-                <div><p style="opacity: 1;"><strong><%=@flat.price %> €</strong> / day</p></div>
-                <div><a id="book" class="btn btn-pet px-4" type="submit">Book</a></div>
-              </div>
+            </div>
+          <div class="d-flex justify-content-between align-items-center">
+            <div><p style="opacity: 1;" class="m-0"><strong><%=@flat.price %> €</strong> / day</p></div>
+            <div><a id="book" class="btn btn-pet px-4" type="submit">Book</a></div>
+          </div>
+        </div>
+        <div>
+          <div data-controller="map">
+            <div id="map"
+              data-target="map.map"
+              style="width: 100%; min-height: 350px; border-radius: 15px; margin-top: 20px;"
+              data-markers='[{"lat": <%= @flat.latitude %>, "lng": <%= @flat.longitude %>}]'
+              data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
             </div>
           </div>
         </div>
       </div>
-</div>
-
-
-
-
-
-  <div data-controller="map">
-    <div id="map"
-      data-target="map.map"
-      style="width: 50%; height: 400px;"
-      data-markers='[{"lat": <%= @flat.latitude %>, "lng": <%= @flat.longitude %>}]'
-      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
     </div>
+  </div>
 </div>
+
+  <%# if current_user != @flat.user %>
+             <%#= simple_form_for(@reservation) do |f| %>
+              <%#= f.label "Start Date" %>
+              <%#= f.input :reservation_start %>
+              <%#= f.input :reservation_end %>
+              <%#= f.hidden_field :flat_id, value: @flat.id %>
+
+
+<!-- <div><p style="opacity: 1;"><strong><%=@flat.price %> €</strong> / day</p></div>
+              <input type="submit" name="commit" value="Create reservation" data-disable-with="Create reservation" class="btn btn-primary">
+            <#% end %>
+          <#% end %>
+
+
+   <div class="container book-form">
+            <div class="container dates product-box shadow">
+               <#%= simple_form_for(@reservation) do |f| %>
+                <h5><i class="far fa-calendar-alt mr-1 color-pet mb-3"></i>Select a Date</h5>
+                <div class="form-group row">
+                  <label for="example-datetime-local-input" class="col-3 col-form-label">Start date</label>
+                  <div class="col-9">
+                    <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="example-datetime-local-input" class="col-3 col-form-label">End date</label>
+                  <div class="col-9">
+                    <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between">
+                <#%= f.hidden_field :flat_id, value: @flat.id %>
+                <div><p style="opacity: 1;"><strong><%=@flat.price %> €</strong> / day</p></div>
+                <input type="submit" name="commit" value="Book" data-disable-with="Create reservation" class="btn btn-pet px-4">
+                </div>
+              <#% end %>
+            </div>
+          </div> -->
