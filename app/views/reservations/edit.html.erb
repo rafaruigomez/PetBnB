@@ -7,7 +7,7 @@
 
         <h2 class="text-center">Edit</h2>
         <div class="col-12 form-group">
-          <% if current_user != @reservation.flat %>
+          <% if current_user != @reservation.flat.user %>
             <%= simple_form_for(@reservation) do |f| %>
                 <%= f.label "Start Date" %>
                 <%= f.input :reservation_start %>
@@ -20,7 +20,7 @@
             <% end %>
 
 
-            <% if current_user == @reservation.flat %>
+            <% if current_user == @reservation.flat.user %>
               <% if @reservation.status != "approved" || "rejected" %>
                 <%= simple_form_for(@reservation) do |f| %>
                   <%= f.hidden_field :flat_id, value: @reservation.flat_id %>
@@ -31,7 +31,7 @@
                 <%= simple_form_for(@reservation) do |f| %>
                   <%= f.hidden_field :flat_id, value: @reservation.flat_id %>
                   <%= f.hidden_field :status, value: "rejected" %>
-                  <%= f.button :submit, "Reject", class: 'btn btn-success' %>
+                  <%= f.button :submit, "Reject", class: 'btn btn-danger' %>
                 <% end %>
                 <% else %>
                   <%= @reservation.status %>
