@@ -23,6 +23,7 @@ class ReservationsController < ApplicationController
 
 
   def edit
+    @reservation = Reservation.find(params[:id])
     authorize @reservation
   end
 
