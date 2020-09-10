@@ -1,2 +1,51 @@
-<h1>Reservations#edit</h1>
-<p>Find me in app/views/reservations/edit.html.erb</p>
+<div class="container">
+  <br>
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-12 col-md-10 col-lg-8">
+      <%= link_to "Go Back", :back, class: "btn btn-primary" %>
+      <div class="main shadow">
+
+        <h2 class="text-center">Edit</h2>
+        <div class="col-12 form-group">
+          <% if current_user != @reservation.flat %>
+            <%= simple_form_for(@reservation) do |f| %>
+                <%= f.label "Start Date" %>
+                <%= f.input :reservation_start %>
+                <%= f.label "End Date" %>
+                <%= f.input :reservation_end %>
+                <%= f.hidden_field :flat_id, value: @reservation.flat_id %>
+              <div><p style="opacity: 1;"><strong><%=@reservation.flat.price%> €</strong> / day</p></div>
+              <input type="submit" name="commit" value="Create reservation" data-disable-with="Create reservation" class="btn btn-primary">
+              <% end %>
+            <% end %>
+
+
+            <% if current_user == @reservation.flat %>
+              <% if @reservation.status != "approved" || "rejected" %>
+                <%= simple_form_for(@reservation) do |f| %>
+                  <%= f.hidden_field :flat_id, value: @reservation.flat_id %>
+                  <%= f.hidden_field :status, value: "approved" %>
+                  <%= f.button :submit, "Approve", class: 'btn btn-success' %>
+                <% end %>
+
+                <%= simple_form_for(@reservation) do |f| %>
+                  <%= f.hidden_field :flat_id, value: @reservation.flat_id %>
+                  <%= f.hidden_field :status, value: "rejected" %>
+                  <%= f.button :submit, "Reject", class: 'btn btn-success' %>
+                <% end %>
+                <% else %>
+                  <%= @reservation.status %>
+
+              <% end %>
+
+            <% end %>
+
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

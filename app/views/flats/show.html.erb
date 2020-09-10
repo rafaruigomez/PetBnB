@@ -78,19 +78,19 @@
   </div>
 </div>
 
-  <%# if current_user != @flat.user %>
-             <%#= simple_form_for(@reservation) do |f| %>
-              <%#= f.label "Start Date" %>
-              <%#= f.input :reservation_start %>
-              <%#= f.input :reservation_end %>
-              <%#= f.hidden_field :flat_id, value: @flat.id %>
+  <% if current_user != @flat.user %>
+             <%= simple_form_for(@reservation) do |f| %>
+              <%= f.label "Start Date" %>
+              <%= f.input :reservation_start %>
+              <%= f.input :reservation_end %>
+              <%= f.hidden_field :flat_id, value: @flat.id %>
 
 
-<!-- <div><p style="opacity: 1;"><strong><%=@flat.price %> €</strong> / day</p></div>
+ <div><p style="opacity: 1;"><strong><%=@flat.price %> €</strong> / day</p></div>
               <input type="submit" name="commit" value="Create reservation" data-disable-with="Create reservation" class="btn btn-primary">
-            <#% end %>
-          <#% end %>
-
+            <% end %>
+          <% end %>
+<!--
 
    <div class="container book-form">
             <div class="container dates product-box shadow">
@@ -116,3 +116,4 @@
               <#% end %>
             </div>
           </div> -->
+
