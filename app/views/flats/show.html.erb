@@ -80,4 +80,11 @@
 
 
 
-
+  <div data-controller="map">
+    <div id="map"
+      data-target="map.map"
+      style="width: 50%; height: 400px;"
+      data-markers='[{"lat": <%= @flat.latitude %>, "lng": <%= @flat.longitude %>}]'
+      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
+</div>
