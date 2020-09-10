@@ -40,7 +40,8 @@ class FlatsController < ApplicationController
     authorize @flat 
     
     if @flat.save
-      redirect_to flat_path(@flat)
+      # redirect_to flat_path(@flat)
+      redirect_to owned_flats_path
     else
       render :new
     end
@@ -64,7 +65,8 @@ class FlatsController < ApplicationController
   def destroy
     #@flat = Flat.find(params[:id])
     @flat.destroy
-    # redirect_to flats_path(@flats_path)
+    authorize @flat
+    redirect_to owned_flats_path
   end
 
   private

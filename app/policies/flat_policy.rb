@@ -37,6 +37,14 @@ class FlatPolicy < ApplicationPolicy
     # true
   end
 
+  
+  def destroy?
+    # record == @restaurant
+    # user == current_user
+    record.user == user
+    # true
+  end
+
   class Scope < Scope
     def resolve
       scope.all
