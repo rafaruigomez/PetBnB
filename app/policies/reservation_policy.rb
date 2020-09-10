@@ -15,7 +15,7 @@ class ReservationPolicy < ApplicationPolicy
   def edit?
     # record == @restaurant
     # user == current_user
-    record.user == user
+    record.user == user || record.flat.user == user
     # true
   end
 
