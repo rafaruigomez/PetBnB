@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   # resources :flats
   # devise_for :users, :paths => 'users'
   # resource :user do
@@ -9,7 +8,10 @@ Rails.application.routes.draw do
   get 'flats/owned', to: 'flats#owned', as: :owned_flats
   get 'flats/booked', to: 'flats#booked', as: :booked_flats
   devise_for :users
-  resources :flats
+  resources :flats do
+    resources :reviews, only: [:new, :create, :index]
+  end
+
   resources :reservations
 
   root to: 'pages#home'

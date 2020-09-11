@@ -7,7 +7,6 @@ class FlatsController < ApplicationController
     # return @flats = policy_scope(Flat).where(location: params[:location].capitalize) if params[:location]
 
     # @flats = policy_scope(Flat)
-
     if params[:location].present?
       @flats = policy_scope(Flat).where("location ILIKE ?", "%#{params[:location]}%")
     else
@@ -21,6 +20,7 @@ class FlatsController < ApplicationController
         image_url: 'https://res.cloudinary.com/rafxss/image/upload/v1599564146/logo_ke2eyy.png'
       }
     end
+
   end
 
   def owned
@@ -69,6 +69,11 @@ class FlatsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def blank_stars
+    5 - @flat.review.rating.to_i
+    authorize @review
   end
 
   def edit

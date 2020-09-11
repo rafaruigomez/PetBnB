@@ -43,6 +43,32 @@
                   <div class="d-flex justify-content-between">
                     <div class="text-muted"><i class="fas fa-map-marker-alt fa-lg mr-1" style="color:#FF5A5F"></i><span> <%= flat.location %> </span></div>
                     <div><span> <strong>  <%= flat.price %> € </strong> / day</span></div>
+
+                     <% rate = [] %>
+                    <% if flat.reviews.present? %>
+                       <% flat.reviews.each do |review| %>
+                          <% rate << review.rating.to_i %>
+                       <% end %>
+                      <% average = rate.sum / rate.count %>
+                    <% else %>
+                      <% average = 0 %>
+                    <% end %>
+
+
+
+                    <div><span> <strong>
+                      <p >
+                      <% rev = 5 - average %>
+                      <% average.times do  %>
+                        <i class="fas fa-paw fa-md color-pet"></i>
+                      <% end %>
+                      <% rev.times do  %>
+                        <i class="fas fa-paw fa-md color-pet color-muted"></i>
+                      <% end %>
+                      </p>
+
+                    </strong> </span></div>
+
                   </div>
                 </div>
               </div>
