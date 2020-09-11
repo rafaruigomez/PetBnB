@@ -1,8 +1,10 @@
 class ReservationsController < ApplicationController
 
   def index
-    @reservations = policy_scope(Reservation).where(user_id: current_user.id)
+    @reservations = policy_scope(Reservation).includes(:flat)
 
+    @guest_reservations = @reservations.where(user_id: current_user.id)
+    @host_reservations = @reservations.where(flats: {user_id: current_user.id})
   end
 
   def show
@@ -15,9 +17,9 @@ class ReservationsController < ApplicationController
     @reservation.user = current_user
     authorize @reservation
     if @reservation.save
-      redirect_to reservation_path(@reservation)
+      redirect_to reservations_path
     else
-      render :new
+      redirect_to flat_path(@reservation.flat)
     end
   end
 
