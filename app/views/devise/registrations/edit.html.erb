@@ -22,21 +22,22 @@
                         autofocus: true,
                         input_html: { autocomplete: "username" }%>
             <%= f.input :first_name,
-                        required: true,
+                        required: false,
                         autofocus: true,
                         input_html: { autocomplete: "first_name" }%>
             <%= f.input :last_name,
-                        required: true,
+                        required: false,
                         autofocus: true,
                         input_html: { autocomplete: "last_name" }%>
             <%= f.input :description,
                         required: false,
                         autofocus: true,
                         input_html: { autocomplete: "description" }%>
-            <%= f.input :avatar_url,
+            <%# <%= f.input :avatar_url,
                         required: true,
                         autofocus: true,
                         input_html: { autocomplete: "avatar_url" }%>
+            <%= f.input :avatar, as: :file, input_html: {multiple: false}%>
             <%= f.input :password,
                         hint: "leave it blank if you don't want to change it",
                         required: false,
