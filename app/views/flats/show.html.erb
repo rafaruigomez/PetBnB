@@ -7,7 +7,7 @@
           <div><a data-confirm="Are you sure?" class="btn btn-sm btn-pet-outline ml-2" rel="nofollow" data-method="delete" href="/flats/<%= @flat.id %>">Delete<i class="fas fa-trash-alt ml-2"></i></a></div>
       <% end %>
     </div>
-    <div class="text-muted mt-2"><i class="fas fa-map-marker-alt fa-lg mr-1" style="color:#FF5A5F"></i><span> <%= @flat.location.capitalize %> </span></div>
+    <div class="text-muted mt-2"><i class="fas fa-map-marker-alt fa-lg mr-1" style="color:#FF5A5F"></i><span> <%= @flat.location %> </span></div>
     <br>
     <div id="carouselExampleIndicators" class="carousel slide mt-2" data-ride="carousel" style='height:200;'>
         <div class="carousel-inner" style="border-radius: 15px;" >
@@ -39,7 +39,7 @@
         </div>
         <div class="product-box shadow">
           <h5 class="mb-3"><i class="fas fa-map-marked-alt mr-1 color-pet"></i> Flat Address</h5>
-            <p><%= @flat.address%>, <strong> <%= @flat.location %> </strong></p>
+            <p><%= @flat.address%></p>
         </div>
       </div>
       <div class="book-form col-xs-12 col-lg-4">
