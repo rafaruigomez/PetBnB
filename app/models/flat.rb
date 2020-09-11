@@ -4,6 +4,7 @@ class Flat < ApplicationRecord
 
   belongs_to :user
   has_many :reservations
+  has_many :reviews
 
   validates :price, presence: true
   validates :name, presence: true

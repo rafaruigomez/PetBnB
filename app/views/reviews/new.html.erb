@@ -1,0 +1,10 @@
+
+<%= simple_form_for([@flat, @review]) do |f| %>
+  <%= f.input :description %>
+  <%= f.input :rating %>
+  <%= f.hidden_field :flat_id, value: @review.flat_id %>
+
+  <input type="submit" name="commit" value="Add review" data-disable-with="Add review" class="btn btn-primary">
+
+
+<% end %>
