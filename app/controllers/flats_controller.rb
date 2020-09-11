@@ -17,7 +17,8 @@ class FlatsController < ApplicationController
     @markers = @flats.geocoded.map do |flat|
       {
         lat: flat.latitude,
-        lng: flat.longitude
+        lng: flat.longitude,
+        image_url: 'https://res.cloudinary.com/rafxss/image/upload/v1599564146/logo_ke2eyy.png'
       }
     end
   end
@@ -41,6 +42,12 @@ class FlatsController < ApplicationController
     # Geocoder.search(casa.geocode)[0].data["address"]["city"]
     @reservation = Reservation.new
     authorize @flat
+
+     @marker = [{
+        lat: @flat.latitude,
+        lng: @flat.longitude,
+        image_url: 'https://res.cloudinary.com/rafxss/image/upload/v1599564146/logo_ke2eyy.png'
+      }]
   end
 
   def new
