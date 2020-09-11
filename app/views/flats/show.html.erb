@@ -46,14 +46,14 @@
             <% if current_user != @flat.user %>
           <div class="dates product-box shadow">
           <div class="form-group row">
-            <div style="padding-top: 0; padding-left: 15px;">
+            <div style="padding-top: 0; padding-left: 15px; width:98%;">
              <%= simple_form_for(@reservation) do |f| %>
               <div class="d-flex justify-content-between align-items-center mb-4">
                 <div><h5 class="m-0"><i class="far fa-calendar-alt mr-1 color-pet"></i> Select a date</h5></div>
                 <div><h4 style="opacity: 1;" class="m-0"><strong><%=@flat.price %> €</strong> / day</h4></div>
               </div>
-              <%= f.input :reservation_start %>
-              <%= f.input :reservation_end %>
+              <%= f.input :reservation_start, as: :string, input_html: {type: :date}, class: "w-100" %>
+              <%= f.input :reservation_end, as: :string, input_html: {type: :date} %>
               <%= f.hidden_field :flat_id, value: @flat.id %>
             </div>
           </div>
@@ -77,5 +77,6 @@
       </div>
     </div>
   </div>
+</div>
 </div>
 
