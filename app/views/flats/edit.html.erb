@@ -6,13 +6,14 @@
       <div class="main shadow">
 
         <h2 class="text-center">Sign up</h2>
-        <div class="col-12 form-group">
+        <div class="col-12 form-group" data-controller="address">
           <%= simple_form_for(@flat) do |f| %>
               <%= f.input :name %>
               <%= f.input :description %>
               <%= f.input :address %>
               <%= f.input :price %>
-              <%= f.input :location, collection: [['Seville', 'Seville'], ['Madrid', 'Madrid'], ['Barcelona', 'Barcelona']], label_method: :second, value_method: :first %>
+              <%#<%= f.input :location, collection: [['Seville', 'Seville'], ['Madrid', 'Madrid'], ['Barcelona', 'Barcelona']], label_method: :second, value_method: :first %>
+              <%= f.input :location, label: 'City'%>
               <%= f.input :photos, as: :file, input_html: { multiple: true } %>
               <%= f.button :submit, "Save", class: 'btn btn-primary' %>
           <% end %>

@@ -14,4 +14,7 @@ class Flat < ApplicationRecord
 
   has_many_attached :photos
 
+  def get_country
+    address.match(/\s(\w+)$/)[0]
+  end
 end

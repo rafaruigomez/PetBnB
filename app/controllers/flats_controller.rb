@@ -4,9 +4,16 @@ class FlatsController < ApplicationController
 
   def index
     # @flats = Flat.all
-    return @flats = policy_scope(Flat).where(location: params[:location].capitalize) if params[:location]
+    # return @flats = policy_scope(Flat).where(location: params[:location].capitalize) if params[:location]
 
-    @flats = policy_scope(Flat)
+    # @flats = policy_scope(Flat)
+
+    if params[:location].present?
+      @flats = policy_scope(Flat).where("location ILIKE ?", "%#{params[:location]}%")
+    else
+      @flats = policy_scope(Flat)
+    end
+
     @markers = @flats.geocoded.map do |flat|
       {
         lat: flat.latitude,
@@ -31,6 +38,7 @@ class FlatsController < ApplicationController
 
   def show
     #@flat = Flat.find(params[:id])
+    # Geocoder.search(casa.geocode)[0].data["address"]["city"]
     @reservation = Reservation.new
     authorize @flat
   end
@@ -45,6 +53,7 @@ class FlatsController < ApplicationController
     @flat = Flat.new(flat_params)
     @user = current_user
     @flat.user = @user
+    # @flat.location = Geocoder.search(@flat.geocode)[0].data["address"]["city"]
     authorize @flat
 
     if @flat.save
@@ -64,8 +73,10 @@ class FlatsController < ApplicationController
   end
 
   def update
-    #@flat = Flat.find(params[:id])
+    # @flat = Flat.find(params[:id])
+    # @flat.location = Geocoder.search(@flat.geocode)[0].data["address"]["city"]
     @flat.update(flat_params)
+    # @flat.update(location: Geocoder.search(@flat.geocode)[0].data["address"]["city"])
     authorize @flat
     redirect_to flat_path(@flat)
   end
@@ -86,6 +97,5 @@ class FlatsController < ApplicationController
 
   def flat_params
     params.require(:flat).permit(:name, :description, :location, :address, :price, photos: [])
-
   end
 end
