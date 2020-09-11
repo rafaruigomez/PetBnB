@@ -55,11 +55,11 @@
               <%= f.input :reservation_start, as: :string, required: true, autofocus: true, input_html: {type: :date} %>
               <%= f.input :reservation_end, as: :string, required: true, autofocus: true, input_html: {type: :date} %>
               <%= f.hidden_field :flat_id, value: @flat.id %>
+              <div class="d-flex flex-row-reverse">
+                <%= f.button :submit, "Book", class: 'btn btn-pet w-100' %>
+                <!-- <div><input type="submit" name="commit" value="Book" data-disable-with="Booking" class="btn btn-pet px-4"></div> -->
+              </div>
             </div>
-          </div>
-          <div class="d-flex flex-row-reverse">
-            <%= f.button :submit, "Book", class: 'btn btn-pet w-100' %>
-            <!-- <div><input type="submit" name="commit" value="Book" data-disable-with="Booking" class="btn btn-pet px-4"></div> -->
           </div>
           </div>
             <% end %>
