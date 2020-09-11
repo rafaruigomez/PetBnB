@@ -23,10 +23,6 @@ export default class extends Controller {
         zoom: 10
       });
 
-      this.map.addControl(new MapboxGeocoder({
-        accessToken: mapboxgl.accessToken,
-        mapboxgl: mapboxgl
-      }));
 
       this.showMarkers()
       this.fitMapToMarkers()
