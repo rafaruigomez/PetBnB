@@ -12,7 +12,6 @@ class User < ApplicationRecord
 
   validates :username, uniqueness: true
 
-
-  has_one_attached :photo
+  has_one_attached :avatar
 
 end
