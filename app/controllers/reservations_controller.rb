@@ -13,12 +13,12 @@ class ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new(reservation_params)
     @reservation.user = current_user
+    authorize @reservation
     if @reservation.save
       redirect_to reservation_path(@reservation)
     else
       render :new
     end
-    authorize @reservation
   end
 
 
