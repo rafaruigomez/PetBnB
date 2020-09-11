@@ -28,10 +28,13 @@
           <button class="btn btn-pet my-2 my-sm-0" type="submit">Search</button>
         </form> 
         %>
+
         <form action="/flats" class="form-inline my-2 my-lg-0" method="get">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search a City" aria-label="Search" name="location" id="location" value="">
-          <input type="submit" name="commit" value="Search" class="btn btn-pet my-2 my-sm-0" data-disable-with="Search">
+            <input class="form-control  mr-sm-2" type="search" placeholder="Search a City" aria-label="Search" name="location" id="location" value="">
+            <input type="submit" name="commit" value="Search" class="btn btn-pet my-2 my-sm-0" data-disable-with="Search">
         </form> 
+
+
 
           <ul class="navbar-nav ml-2">
             <% if current_user %>
