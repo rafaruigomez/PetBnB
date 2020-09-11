@@ -23,10 +23,6 @@ export default class extends Controller {
         zoom: 10
       });
 
-      this.map.addControl(new MapboxGeocoder({
-        accessToken: mapboxgl.accessToken,
-        mapboxgl: mapboxgl
-      }));
 
       this.showMarkers()
       this.fitMapToMarkers()
@@ -35,8 +31,14 @@ export default class extends Controller {
 
   showMarkers() {
     this.markers.forEach((marker) => {
+      const markerDiv = document.createElement('div');
+      markerDiv.className = 'rounded-circle';
+      markerDiv.style.backgroundImage = `url('${marker.image_url}')`;
+      markerDiv.style.backgroundSize = 'contain';
+      markerDiv.style.width = '25px';
+      markerDiv.style.height = '25px';
 
-      new mapboxgl.Marker()
+      new mapboxgl.Marker(markerDiv)
         .setLngLat([marker.lng, marker.lat])
         .addTo(this.map);
     });

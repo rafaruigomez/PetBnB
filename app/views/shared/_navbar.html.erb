@@ -11,9 +11,12 @@
           <li class="nav-item active">
             <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/flats">Discover <span class="sr-only">(current)</span></a>
+          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Cities
+              Top Cities
             </a>
             <div class="dropdown-menu mt-2" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="/flats?location=seville">Seville</a>
@@ -22,27 +25,31 @@
             </div>
           </li>
         </ul>
-        <%# 
+        <%#
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="search" placeholder="Search a City" aria-label="Search">
           <button class="btn btn-pet my-2 my-sm-0" type="submit">Search</button>
-        </form> 
+        </form>
         %>
 
         <form action="/flats" class="form-inline my-2 my-lg-0" method="get">
             <input class="form-control  mr-sm-2" type="search" placeholder="Search a City" aria-label="Search" name="location" id="location" value="">
             <input type="submit" name="commit" value="Search" class="btn btn-pet my-2 my-sm-0" data-disable-with="Search">
-        </form> 
+        </form>
 
 
 
           <ul class="navbar-nav ml-2">
             <% if current_user %>
               <li class="nav-item dropdown" style="cursor: pointer;">
-                <%= image_tag current_user.avatar_url, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                <%if current_user.avatar.attachment.nil? %>
+                  <%= image_tag 'https://avatars.dicebear.com/api/male/john.svg?mood[]=happy', class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                <% else %>
+                  <%= cl_image_tag current_user.avatar.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                <% end %>
                 <div class="dropdown-menu dropdown-menu-right mt-2" aria-labelledby="navbarDropdown">
-                  <%= link_to "My Reservations", "#", class: "dropdown-item" %>
-                  <%= link_to "My Flats", owned_flats_path, class: "dropdown-item" %>
+                  <%= link_to "My Reservations", "/reservations", class: "dropdown-item" %>
+                  <%= link_to "My Houses", owned_flats_path, class: "dropdown-item" %>
                   <%= link_to "Post a House", "/flats/new", class: "dropdown-item" %>
                   <%= link_to "Edit My Profile", "/users/edit", class: "dropdown-item" %>
                   <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>

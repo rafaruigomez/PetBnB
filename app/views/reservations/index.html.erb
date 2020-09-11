@@ -8,49 +8,104 @@
 
 <br>
 
-<div class="container">
-  <div class="justify-content-center">
-    <% if current_user%>
-    <div class="mb-3 mr-auto ml-auto" style="max-width: 600px;">
-      <div>
+<div class="container" style="padding-right: 100px; padding-left: 100px;">
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="host-tab" data-toggle="tab" href="#host" role="tab" aria-controls="host" aria-selected="true">Host</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="guest-tab" data-toggle="tab" href="#guest" role="tab" aria-controls="guest" aria-selected="false">Guest</a>
+    </li>
+  </ul>
+  <div class="tab-content mt-4" id="myTabContent">
+    <div class="tab-pane fade active show" id="host" role="tabpanel" aria-labelledby="host-tab">
+      <div class="justify-content-center">
+        <% if @host_reservations.empty? %>
+          <h1 class="text-center"style="align-content: center;">No one made a reservation 😅</h1>
+        <% else %>
+          <div class="justify-content-center">
+            <% @host_reservations.each do |reservation| %>
+              <div class="card mb-3 mr-auto ml-auto" style="max-width: 600px; border-radius: 15px;">
+                <div class="row no-gutters">
+                  <div class="col-xs-5 col-md-4">
+                      <img src="<%= cl_image_path reservation.flat.photos.first.key, height: 500, width: 500, crop: :fill, class: "d-block" %>" class="card-img h-100" alt="..." style="border-radius: 14px; object-fit: cover;">
+                  </div>
+                  <div class="col-xs-7 col-md-8">
+                    <div class="card-body h-100 ml-3 mr-2">
+                      <div class="d-flex flex-column align-content-between" style="height: 100%;">
+                        <div class="mb-auto">
+                          <h3 class="text-center mb-4"style="align-content: center">Reservation info</h3>
+                          <h6 class="card-title"><i class="fa fa-calendar-alt fa-lg mr-2 color-pet"></i><strong>Start date:</strong> <%= reservation.reservation_start.strftime("%m/%d/%Y") %></h6>
+                          <h6 class="card-title mb-4"><i class="fa fa-calendar-alt fa-lg mr-2 color-pet"></i><strong>End date:</strong>  <%= reservation.reservation_end.strftime("%m/%d/%Y") %></h6>
+                          <% if reservation.status == "pending" %>
+                            <div class="d-flex justify-content-center">
+                              <div class="mr-2" style="opacity:0.8;">
+                                <%= simple_form_for(reservation) do |f| %>
+                                  <%= f.hidden_field :flat_id, value: reservation.flat_id %>
+                                  <%= f.hidden_field :status, value: "approved" %>
+                                  <%= f.button :submit, "Approve", class: 'btn btn-success' %>
+                                <% end %>
+                              </div>
+                              <div style="opacity:0.8;">
+                                <%= simple_form_for(reservation) do |f| %>
+                                  <%= f.hidden_field :flat_id, value: reservation.flat_id %>
+                                  <%= f.hidden_field :status, value: "rejected" %>
+                                  <%= f.button :submit, "Reject", class: 'btn btn-danger' %>
+                                <% end %>
+                              </div>
+                            </div>
+                          <% elsif reservation.status == "approved" %>
+                            <div class="p-2 bg-success rounded text-center text-white" style="opacity: 0.8;"><strong>Approved by me</strong></div>
+                          <% elsif reservation.status == "rejected"%>
+                            <div class="p-2 bg-danger rounded text-center text-white" style="opacity: 0.8;"><strong>Rejected by me</strong></div>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
       </div>
     </div>
-    <% end %>
-  <% if @reservations.empty? %>
-    <h1 class="text-center"style="align-content: center;">You have no reservations 😅</h1>
-  <% else %>
-  <div class="justify-content-center">
-    <% @reservations.each do |reservation| %>
-    <div class="card mb-3 mr-auto ml-auto" style="max-width: 600px; border-radius: 15px;">
-      <%= link_to reservation_path(reservation), class: "text-decoration-none color-link-none" do %>
-        <div class="row no-gutters">
-          <div class="col-4 col-md-4">
-            <img src="<%= cl_image_path reservation.flat.photos.first.key, height: 500, width: 500, crop: :fill, class: "d-block" %>" class="card-img" alt="..." style="border-top-left-radius: 15px; border-bottom-left-radius: 15px; border-top-right-radius: 0px; border-bottom-right-radius: 0px;">
-          </div>
-          <div class="col-8 col-md-8">
-            <div class="card-body h-100">
-              <div class="d-flex flex-column align-content-between" style="height: 100%;">
-                <div class="mb-auto">
-                  <h3 class="text-center"style="align-content: center">Reservation info</h3>
-                  <h6 class="card-title"><i class="fa fa-calendar-alt fa-2x mr-2 color-pet"></i>Start: <%= reservation.reservation_start %></h6>
-                  <h6 class="card-title mr-2"><i class="fa fa-calendar-alt fa-2x mr-2 color-pet"></i>End:  <%= reservation.reservation_end %></h6>
-
-                  <!-- USE A CONDITIONAL STATEMENT TO DISPLAY DIFFERENT VIEW FOR: PENDING, APROVED, REJECTED -->
-
-                  <!-- <h5 class="card-title"><%= reservation.status %></h5> -->
-
-                  <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title" data-content="For more information contact the owner!"><%= reservation.status %></button>
-
+    <div class="tab-pane fade" id="guest" role="tabpanel" aria-labelledby="guest-tab">
+      <div class="justify-content-center">
+        <% if @guest_reservations.empty? %>
+          <h1 class="text-center"style="align-content: center;">You don't have upcoming reservations 😅</h1>
+        <% else %>
+          <div class="justify-content-center">
+            <% @guest_reservations.each do |reservation| %>
+              <div class="card mb-3 mr-auto ml-auto" style="max-width: 600px; border-radius: 15px;">
+                <div class="row no-gutters">
+                  <div class="col-xs-5 col-md-4">
+                      <img src="<%= cl_image_path reservation.flat.photos.first.key, height: 500, width: 500, crop: :fill, class: "d-block" %>" class="card-img h-100" alt="..." style="border-radius: 14px; object-fit: cover;">
+                  </div>
+                  <div class="col-xs-7 col-md-8">
+                    <div class="card-body h-100 ml-3 mr-2">
+                      <div class="d-flex flex-column align-content-between" style="height: 100%;">
+                        <div class="mb-auto">
+                          <h3 class="text-center mb-4"style="align-content: center">Reservation info</h3>
+                          <h6 class="card-title"><i class="fa fa-calendar-alt fa-lg mr-2 color-pet"></i><strong>Start date:</strong> <%= reservation.reservation_start.strftime("%m/%d/%Y") %></h6>
+                          <h6 class="card-title mb-4"><i class="fa fa-calendar-alt fa-lg mr-2 color-pet"></i><strong>End date:</strong>  <%= reservation.reservation_end.strftime("%m/%d/%Y") %></h6>
+                          <% if reservation.status == "pending" %>
+                            <div class="p-2 bg-warning rounded text-center text-white" style="opacity: 0.8;"><strong>Pending</strong></div>
+                          <% elsif reservation.status == "approved"  %>
+                            <div class="p-2 bg-success rounded text-center text-white" style="opacity: 0.8;"><strong>Approved</strong></div>
+                          <% elsif reservation.status == "rejected" %>
+                            <div class="p-2 bg-danger rounded text-center text-white" style="opacity: 0.8;"><strong>Rejected</strong></div>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-
               </div>
-            </div>
+            <% end %>
           </div>
-        </div>
+        <% end %>
       </div>
-      <% end %>
-    <% end %>
+    </div>
   </div>
-<% end %>
-</div>
 </div>

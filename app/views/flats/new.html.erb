@@ -2,7 +2,7 @@
   <br>
   <div class="row justify-content-center">
     <div class="col-12 col-sm-12 col-md-10 col-lg-8">
-      <%= link_to "Go Back", :back, class: "btn btn-primary" %>
+      <%= link_to "← Back", :back %>
       <div class="main shadow">
       <h2 class="text-center">Post a new dog's house</h2>
         <div class="col-12 form-group" data-controller="address">
@@ -10,12 +10,12 @@
             <%= f.input :name %>
             <%= f.input :description %>
             <%= f.input :address %>
-            <%= f.input :price %>
+            <%= f.input :price, input_html: { min: '0' } %>
             <%# <%= f.input :location, collection: [['Seville', 'Seville'], ['Madrid', 'Madrid'], ['Barcelona', 'Barcelona']], label_method: :second, value_method: :first %>
             <%= f.input :location, label: 'City' %>
             <%= f.input :photos, as: :file, input_html: { multiple: true } %>
 
-            <input type="submit" name="commit" value="Create Flat" data-disable-with="Create Flat" class="btn btn-primary">
+            <input type="submit" name="commit" value="Create House" data-disable-with="Creating House" class="btn btn-primary">
           <% end %>
           <br>
         </div>
