@@ -12,7 +12,7 @@
             <%= f.input :address %>
             <%= f.input :price %>
             <%# <%= f.input :location, collection: [['Seville', 'Seville'], ['Madrid', 'Madrid'], ['Barcelona', 'Barcelona']], label_method: :second, value_method: :first %>
-            <%= f.input :location%>
+            <%= f.input :location, label: 'City' %>
             <%= f.input :photos, as: :file, input_html: { multiple: true } %>
 
             <input type="submit" name="commit" value="Create Flat" data-disable-with="Create Flat" class="btn btn-primary">

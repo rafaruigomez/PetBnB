@@ -4,9 +4,16 @@ class FlatsController < ApplicationController
 
   def index
     # @flats = Flat.all
-    return @flats = policy_scope(Flat).where(location: params[:location].capitalize) if params[:location]
+    # return @flats = policy_scope(Flat).where(location: params[:location].capitalize) if params[:location]
 
-    @flats = policy_scope(Flat)
+    # @flats = policy_scope(Flat)
+
+    if params[:location].present?
+      @flats = policy_scope(Flat).where("location ILIKE ?", "%#{params[:location]}%")
+    else
+      @flats = policy_scope(Flat)
+    end
+
     @markers = @flats.geocoded.map do |flat|
       {
         lat: flat.latitude,
