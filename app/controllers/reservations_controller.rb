@@ -34,7 +34,7 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.where(id: params[:id])
     authorize @reservation
     @reservation.update(reservation_params)
-    redirect_to reservation_path
+    redirect_to reservations_path
 
 
   end
