@@ -41,6 +41,29 @@
           <h5 class="mb-3"><i class="fas fa-map-marked-alt mr-1 color-pet"></i> Flat Address</h5>
             <p><%= @flat.address%></p>
         </div>
+
+         <div class="product-box shadow">
+          <h5 class="mb-3"> <i class="far fa-id-badge mr-2 color-pet"></i>Flat Reviews (<%= link_to "Add review", new_flat_review_path(@flat) %>)   </h5>
+          <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+
+            <% @flat.reviews.each do |review| %>
+                <% rev = 5 - review.rating.to_i %>
+
+
+                <span><strong><p >
+                <%= review.description%>
+                <% review.rating.times do  %>
+                  <i class="fas fa-paw fa-md color-pet"></i>
+                <% end %>
+                <% rev.times do  %>
+                  <i class="fas fa-paw fa-md color-pet color-muted"></i>
+                <% end %>
+                </p></strong></span>
+
+
+            <% end %>
+        </div>
+
       </div>
       <div class="book-form col-xs-12 col-lg-4">
             <% if current_user != @flat.user %>

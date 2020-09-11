@@ -16,7 +16,7 @@ class ReviewsController < ApplicationController
     @review.flat_id = @flat.id
     authorize @review
     if @review.save
-      redirect_to flat_reviews_path(@flat)
+      redirect_to flat_path(@flat)
     else
       render :new
     end
@@ -26,6 +26,10 @@ class ReviewsController < ApplicationController
   def destroyshow
   end
 
+  def blank_stars
+    5 - @flat.review.rating.to_i
+    authorize @review
+  end
 
 
    private
